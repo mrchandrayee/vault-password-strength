@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0d0d0d">
+  <!-- Primary SEO -->
+  <title>VAULT — Password Strength Checker | mrchandrayee</title>
+  <meta name="description" content="A slick animated password strength checker with real-time visual feedback, meter bars and security tips. Pure HTML, CSS & JavaScript.">
+  <meta name="author" content="mrchandrayee">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mrchandrayee.github.io/vault-password-strength/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mrchandrayee.github.io/vault-password-strength/">
+  <meta property="og:title" content="VAULT — Password Strength Checker | mrchandrayee">
+  <meta property="og:description" content="A slick animated password strength checker with real-time visual feedback, meter bars and security tips. Pure HTML, CSS & JavaScript.">
+  <meta property="og:image" content="https://mrchandrayee.github.io/vault-password-strength/preview.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://mrchandrayee.github.io/vault-password-strength/">
+  <meta name="twitter:title" content="VAULT — Password Strength Checker | mrchandrayee">
+  <meta name="twitter:description" content="A slick animated password strength checker with real-time visual feedback, meter bars and security tips. Pure HTML, CSS & JavaScript.">
+  <meta name="twitter:image" content="https://mrchandrayee.github.io/vault-password-strength/preview.png">
+  <meta name="twitter:creator" content="@mrchandrayee">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "VAULT — Password Strength Checker",
+    "description": "A slick animated password strength checker with real-time visual feedback, meter bars and security tips. Pure HTML, CSS & JavaScript.",
+    "url": "https://mrchandrayee.github.io/vault-password-strength/",
+    "author": { "@type": "Person", "name": "mrchandrayee", "url": "https://github.com/mrchandrayee" },
+    "applicationCategory": "WebApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+<meta name="theme-color" content="#080d18">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ambient"></div>
+<header class="topbar"><div class="traffic"><i></i><i></i><i></i></div><div class="brand"><b>VAULT</b><span> — how strong is that password, really?</span></div><nav><a href="#analyzer">Password test</a><a href="#source">Source</a></nav></header>
+<main>
+<section class="hero" id="analyzer">
+<div class="eyebrow"><span class="pulse"></span> LOCAL PASSWORD STRENGTH LAB</div>
+<h1>How long would it take<br>to <em>crack your password?</em></h1>
+<p class="sub">Type a password. Watch the vault get harder to break.</p>
+<div class="field-wrap">
+<label for="password">Password <button id="suggest" type="button">Suggest strong</button></label>
+<div class="password-field"><input id="password" type="password" placeholder="Start typing…" autocomplete="off" spellcheck="false"><button id="toggle" type="button" aria-label="Show password">◉</button></div>
+<div class="meter" aria-label="Password strength"><span></span><span></span><span></span><span></span><span></span></div>
+<div class="meter-caption"><span id="strength">Waiting for a password</span><span id="bits">0 bits entropy</span></div>
+</div>
+<div class="lock-card" id="lockCard">
+<div class="lock-art" id="lockArt"><div class="lock-shackle"></div><div class="lock-body"><span class="keyhole"></span></div></div>
+<div class="lock-info"><div class="lock-heading"><span id="lockName">No lock at all</span><span class="rank" id="rank">—</span></div><p id="crackText">The door is standing open.</p><small id="entropyText">0 bits of entropy</small></div>
+<div class="card-bars"><i></i><i></i><i></i><i></i></div>
+</div>
+<div class="wait" id="wait">Wait for the last lock!</div>
+<div class="privacy"><span>🔒</span> Your password never leaves this device. Analysis runs locally.</div>
+</section>
+<section class="source" id="source"><div class="source-head"><div><span class="eyebrow">UNDER THE HOOD</span><h2>Small code. Serious security.</h2></div><span class="live">● LIVE PREVIEW</span></div>
+<div class="code-grid"><article><div class="code-title"><span class="file-dot">◆</span> index.html</div><pre><code><b>&lt;input</b> id=<i>"password"</i>
+  type=<i>"password"</i>
+  autocomplete=<i>"off"</i> <b>/&gt;</b>
+
+&lt;section</b> class=<i>"lock-card"</i>&gt;
+  &lt;div</b> id=<i>"lockArt"</i>&gt;&lt;/div&gt;
+  &lt;p</b> id=<i>"crackText"</i>&gt;&lt;/p&gt;
+&lt;/section&gt;</code></pre></article>
+<article><div class="code-title"><span class="file-dot blue">◆</span> app.js</div><pre><code><b>function</b> analyzePassword(value) {
+  <b>const</b> pool = getCharacterPool(value);
+  <b>const</b> entropy =
+    value.length * Math.log2(pool);
+  <b>return</b> classify(entropy);
+}
+
+password.addEventListener(
+  <i>"input"</i>, event =&gt; {
+    render(analyzePassword(
+      event.target.value
+    ));
+  }
+);</code></pre></article></div>
+<div class="source-note">Illustrative snippets · Full source included in the project ZIP</div>
+</section>
+</main>
+<footer><span class="footer-mark">V</span> VAULT <span>·</span> A password-strength experiment</footer>
+<script src="app.js"></script>
+</body></html>
